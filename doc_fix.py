@@ -17,16 +17,16 @@ class Window(Frame):
 		entry = Entry(self)
 
 		#textbox showing text before, and the text after modifications
-		beforeTextBox = Text(self, height=10,width=80, borderwidth=2, relief="solid")
-		afterTextBox = Text(self, height=10, width=80, borderwidth=2, relief="solid")
+		beforeTextBox = Text(self, height=18,width=80, borderwidth=2, relief="solid")
+		afterTextBox = Text(self, height=18, width=80, borderwidth=2, relief="solid")
 
 		#buttons
 		showButton = Button(self, text="Show", command = lambda: self.print_entry(entry.get()))
 
-		insertButton = Button(self, text="insert", 
+		insertButton = Button(self, text="Insert Bottom", 
 			command = lambda: self.insert_tBox(afterTextBox, beforeTextBox.get("1.0", END)))
 
-		deleteButton = Button(self, text="Clear", command = lambda: self.clear_tBox(beforeTextBox))
+		deleteButton = Button(self, text="Clear Top", command = lambda: self.clear_tBox(beforeTextBox))
 
 		bulletsButton = Button(self, text="Fix bullets", 
 			command = lambda: self.fix_bullets(afterTextBox,beforeTextBox.get("1.0", END)))
@@ -37,8 +37,14 @@ class Window(Frame):
 		asciiButton = Button(self, text="Get ascii",
 			command = lambda: self.get_ascii(afterTextBox,beforeTextBox.get("1.0", END)))
 
+		newlineButton = Button(self, text="Fix newline",
+			command = lambda: self.fix_newline(afterTextBox,beforeTextBox.get("1.0", END)))
 
-		self.master.title("GUI")
+		exitButton = Button(self, text="Exit",
+			command = self.client_exit)
+
+
+		self.master.title("Doc Fixer")
 		self.pack(fill=BOTH, expand=1)
 		self.master.config(menu=menu)
 
@@ -51,12 +57,17 @@ class Window(Frame):
 		menu.add_cascade(label="File", menu=file)
 		menu.add_cascade(label = "Edit", menu=edit)
 
+		beforeTextBox.place(x=150,y=10)
+		afterTextBox.place(x=150,y=300)
+
 		#placing buttons
 		insertButton.place(x=10,y=10)
 		deleteButton.place(x=10,y=40)
 		bulletsButton.place(x=10,y=70)
 		fixEspButton.place(x=10, y=100)
 		asciiButton.place(x=10, y=130)
+		newlineButton.place(x=10, y=160)
+		exitButton.place(x=10, y=190)
 
 	def showText(self):
 		text = Label(self, text="Greetings")
@@ -126,6 +137,22 @@ class Window(Frame):
 
 			else:	
 				writeStr += str(ord(c))
+
+		self.clear_tBox(tBox)
+		tBox.insert(END, writeStr)
+
+	#fix newlines caused by formatting software
+	def fix_newline(self, tBox, nString):
+
+		writeStr = ""
+
+		for c in nString:
+			if(ord(c) == 10):
+				writeStr += " "
+
+			else:
+				writeStr += c
+
 
 		self.clear_tBox(tBox)
 		tBox.insert(END, writeStr)
