@@ -3,6 +3,7 @@ Adjusts documents to adhere to format of document maker.
 
 * Able to convert bulletpoints into HTML lists
 * Able to convert Spanish special characters 
+* Able to fix newlines that appear from text editor formatting
 
 
 ## Bugs
