@@ -1,3 +1,5 @@
+#Version to deploy
+
 from tkinter import *
 import unicodedata
 
@@ -55,8 +57,8 @@ class Window(Frame):
 		self.pack(fill=BOTH, expand=1)
 		self.master.config(menu=menu)
 
-		beforeTextBox.pack()
-		afterTextBox.pack()
+		#beforeTextBox.pack(side = TOP, fill = BOTH, expand = True)
+		#afterTextBox.pack(side = BOTTOM, fill = BOTH, expand = True)
 
 		file.add_command(label="Exit", command=self.client_exit)
 		menu.add_cascade(label="File", menu=file)
@@ -80,7 +82,7 @@ class Window(Frame):
 		text.pack()
 
 	def client_exit(self):
-		exit()
+		sys.exit()
 
 	def print_entry(self, newString):
 		print(newString)
