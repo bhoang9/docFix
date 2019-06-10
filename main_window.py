@@ -8,11 +8,16 @@ from button_functions import *
 import unicodedata
 
 class Window(Frame):
+
 	def __init__(self, master=None):
 
+		self.root = Tk() #make the window
+		self.root.config(background = "grey")
 		Frame.__init__(self,master)
-
-		self.master = master
+		self.root.wm_title("Doc Fixer")
+		self.root.geometry("800x600")
+		self.root.config(background = "#808080")
+		#self.master = master
 
 		self.init_window()
 
@@ -30,37 +35,28 @@ class Window(Frame):
 		showButton = Button(self, text="Show", command = lambda: self.print_entry(entry.get()))
 
 		insertBottomButton = Button(self, text="Top to Bottom", 
-			command = lambda: insert_tBox(afterTextBox, beforeTextBox.get("1.0", END)))
+			command = lambda: insert_tBox(afterTextBox, beforeTextBox.get("1.0", 'end-1c')))
 
 		insertTopButton = Button(self, text="Bottom to Top",
-			command = lambda: insert_tBox(beforeTextBox, afterTextBox.get("1.0", END)))
+			command = lambda: insert_tBox(beforeTextBox, afterTextBox.get("1.0", 'end-1c')))
 
 		deleteButton = Button(self, text="Clear Top", 
 			command = lambda: clear_tBox(beforeTextBox))
 
 		bulletsButton = Button(self, text="Fix bullets", 
-			command = lambda: fix_bullets(afterTextBox,beforeTextBox.get("1.0", END)))
+			command = lambda: fix_bullets(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
 
 		fixSpecial = Button(self, text="Fix Special Char",
-			command = lambda: convert_special(afterTextBox,beforeTextBox.get("1.0", END)))
+			command = lambda: convert_special(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
 
 		asciiButton = Button(self, text="Get ASCII",
-			command = lambda: get_ascii(afterTextBox,beforeTextBox.get("1.0", END)))
+			command = lambda: get_ascii(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
 
 		newlineButton = Button(self, text="Fix newline",
-			command = lambda: fix_newline(afterTextBox,beforeTextBox.get("1.0", END)))
-
-		underlineButton = Button(self,text="Add underline",
-			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
-
-		underlineButton = Button(self,text="Add underline",
-			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
-
-		underlineButton = Button(self,text="Add underline",
-			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
+			command = lambda: fix_newline(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
 
 		createListButton = Button(self, text="Create list",
-			command = lambda: create_list(afterTextBox,beforeTextBox.get("1.0", END)))
+			command = lambda: create_list(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
 
 		exitButton = Button(self, text="Exit",
 			command = lambda: client_exit())
@@ -69,9 +65,9 @@ class Window(Frame):
 		options = self.init_options_menu(afterTextBox, beforeTextBox)
 
 
-		self.master.title("Doc Fixer")
+		#self.master.title("Doc Fixer")
 		self.pack(fill=BOTH, expand=1)
-		self.master.config(menu=menu)
+		#self.master.config(menu=menu)
 
 		#beforeTextBox.pack(side = TOP, fill = BOTH, expand = True)
 		#afterTextBox.pack(side = BOTTOM, fill = BOTH, expand = True)
@@ -94,14 +90,17 @@ class Window(Frame):
 		asciiButton.place(x=10, y=250)
 		exitButton.place(x=10, y=280)
 
-	def getAfterbox():
-		return afterTextBox.get("1.0", END)
+	def start(self):
+		self.root.mainloop()
 
-	def getBeforeTextbox():
-		return beforeTextBox.get("1.0", END)
+	def getAfterbox(self):
+		return self.afterTextBox.get("1.0", 'end-1c')
+
+	def getBeforeTextbox(self):
+		return self.beforeTextBox.get("1.0", 'end-1c')
 
 	def init_options_menu(self, aftTextBox, befTextBox):
-		string_var = StringVar(self.master)
+		string_var = StringVar(self.root)
 		string_var.set("Add HTML tags")
 
 		option_choices = ["Bold", "Italic", "Underline", "Bold Underline", "Bold Italic",
@@ -112,8 +111,8 @@ class Window(Frame):
 
 		return options
 
-root = Tk()
-root.geometry("800x600")
-app = Window(root)
-root.config(background="grey")
-root.mainloop()
+#root = Tk()
+#root.geometry("800x600")
+#app = Window(root)
+#root.config(background="grey")
+#root.mainloop()
