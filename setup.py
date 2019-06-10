@@ -7,7 +7,7 @@ Usage:
 
 from setuptools import setup
 
-APP = ['doc_fix.py']
+APP = ['doc_fix_main.py']
 DATA_FILES = []
 OPTIONS = {}
 
