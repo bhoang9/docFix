@@ -1,10 +1,12 @@
 # docFix
 Adjusts documents to adhere to format of document maker.
 
-* Able to convert bulletpoints into HTML lists
-* Able to convert Spanish special characters 
-* Able to fix newlines that appear from text editor formatting
+## Features
+* Convert bulletpoint lists into HTML lists
+* Convert Spanish special characters 
+* Fix newlines that appear from text editor formatting
 * Able to create new lists (text must be formatted like a list prior)
+* Add HTML tags (bold, underline, italics)
 
 ## Bugs
 
