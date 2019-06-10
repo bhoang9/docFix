@@ -17,7 +17,7 @@ class Window(Frame):
 		self.root.wm_title("Doc Fixer")
 		self.root.geometry("800x600")
 		self.root.config(background = "#808080")
-		#self.master = master
+		self.master = master
 
 		self.init_window()
 
