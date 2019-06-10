@@ -1,7 +1,10 @@
 #Version to deploy
 
+#Eventually want to compartamentalize button definitions and have layout of
+#elemnts(buttons, text entry, etc) properly defined
+
 from tkinter import *
-from buttonFunctions import *
+from button_functions import *
 import unicodedata
 
 class Window(Frame):
@@ -47,11 +50,23 @@ class Window(Frame):
 		newlineButton = Button(self, text="Fix newline",
 			command = lambda: fix_newline(afterTextBox,beforeTextBox.get("1.0", END)))
 
+		underlineButton = Button(self,text="Add underline",
+			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
+
+		underlineButton = Button(self,text="Add underline",
+			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
+
+		underlineButton = Button(self,text="Add underline",
+			command = lambda: add_html_tag(afterTextBox, beforeTextBox.get("1.0"), "underline"))
+
 		createListButton = Button(self, text="Create list",
 			command = lambda: create_list(afterTextBox,beforeTextBox.get("1.0", END)))
 
 		exitButton = Button(self, text="Exit",
 			command = lambda: client_exit())
+
+		#getting option menu
+		options = self.init_options_menu(afterTextBox, beforeTextBox)
 
 
 		self.master.title("Doc Fixer")
@@ -73,10 +88,11 @@ class Window(Frame):
 		deleteButton.place(x=10,y=70)
 		bulletsButton.place(x=10,y=100)
 		fixSpecial.place(x=10, y=130)
-		asciiButton.place(x=10, y=160)
-		newlineButton.place(x=10, y=190)
-		createListButton.place(x=10, y=230)
-		exitButton.place(x=10, y=260)
+		newlineButton.place(x=10, y=160)
+		options.place(x=10, y=190)
+		createListButton.place(x=10, y=220)
+		asciiButton.place(x=10, y=250)
+		exitButton.place(x=10, y=280)
 
 	def getAfterbox():
 		return afterTextBox.get("1.0", END)
@@ -84,8 +100,20 @@ class Window(Frame):
 	def getBeforeTextbox():
 		return beforeTextBox.get("1.0", END)
 
+	def init_options_menu(self, aftTextBox, befTextBox):
+		string_var = StringVar(self.master)
+		string_var.set("Add HTML tags")
+
+		option_choices = ["Bold", "Italic", "Underline", "Bold Underline", "Bold Italic",
+					"All"]
+
+		options = OptionMenu(self.master, string_var, *option_choices,
+			command = lambda x: add_html_tag(aftTextBox, befTextBox.get("1.0", 'end-1c'), string_var.get()))
+
+		return options
+
 root = Tk()
 root.geometry("800x600")
 app = Window(root)
-root.configure(background="grey")
+root.config(background="grey")
 root.mainloop()
