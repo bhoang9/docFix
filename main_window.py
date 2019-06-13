@@ -5,6 +5,8 @@
 
 from tkinter import *
 from button_functions import *
+from button_panel import *
+from textbox_panel import *
 import unicodedata
 
 class Window(Frame):
@@ -19,7 +21,26 @@ class Window(Frame):
 		self.root.config(background = "#808080")
 		self.master = master
 
+		# self.init_main_window(self.master)
+
+		# self.button_panel = Frame(self.root, width=200, height = 550)
+		# self.button_panel.grid(row=0, column=0, padx=5, pady=2)
+
+		# self.textbox_panel = Frame(self.root, width=600, height = 600)
+		# self.textbox_panel.grid(row=0, column=1, padx=5, pady=2)
+
+		# self.textbox_panel = textbox_panel(self.root, self.textbox_panel)
+		# self.button_panel = button_panel(self.root, self.button_panel)
+
 		self.init_window()
+
+	def init_main_window(self, Frame):
+		menu = Menu(self.master)
+		file = Menu(menu)
+		edit = Menu(menu)
+		file.add_command(label="Exit", command=client_exit)
+
+		self.root.config(menu=menu)
 
 	def init_window(self):
 		menu = Menu(self.master)
@@ -67,7 +88,7 @@ class Window(Frame):
 
 		#self.master.title("Doc Fixer")
 		self.pack(fill=BOTH, expand=1)
-		#self.master.config(menu=menu)
+		self.master.config(menu=menu)
 
 		#beforeTextBox.pack(side = TOP, fill = BOTH, expand = True)
 		#afterTextBox.pack(side = BOTTOM, fill = BOTH, expand = True)
@@ -110,9 +131,3 @@ class Window(Frame):
 			command = lambda x: add_html_tag(aftTextBox, befTextBox.get("1.0", 'end-1c'), string_var.get()))
 
 		return options
-
-#root = Tk()
-#root.geometry("800x600")
-#app = Window(root)
-#root.config(background="grey")
-#root.mainloop()

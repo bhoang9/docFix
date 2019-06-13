@@ -102,6 +102,7 @@ def fix_newline(tBox, nString):
 	clear_tBox(tBox)
 	tBox.insert(END, writeStr)
 
+#Add html tags around a string
 def add_html_tag(tBox, nString, html_tag):
 
 	openingTag = button_dictionaries.html_tags[html_tag][0]
