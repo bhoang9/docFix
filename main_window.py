@@ -15,27 +15,32 @@ class Window(Frame):
 
 		self.root = Tk() #make the window
 		self.root.config(background = "grey")
-		Frame.__init__(self,master)
+		#Frame.__init__(self,master)
 		self.root.wm_title("Doc Fixer")
 		self.root.geometry("800x600")
 		self.root.config(background = "#808080")
 		self.master = master
 
-		# self.init_main_window(self.master)
+		self.init_main_window()
 
-		# self.button_panel = Frame(self.root, width=200, height = 550)
-		# self.button_panel.grid(row=0, column=0, padx=5, pady=2)
+		self.button_panel = Frame(self.root, width=200, height = 550)
+		self.button_panel.grid(row=0, column=0, padx=5, pady=5)
 
-		# self.textbox_panel = Frame(self.root, width=600, height = 600)
-		# self.textbox_panel.grid(row=0, column=1, padx=5, pady=2)
+		self.textbox_panel = Frame(self.root, width=600, height = 600)
+		self.textbox_panel.grid(row=0, column=1, padx=5, pady=5)
 
-		# self.textbox_panel = textbox_panel(self.root, self.textbox_panel)
-		# self.button_panel = button_panel(self.root, self.button_panel)
+		self.textbox_panel = textbox_panel(self.root, self.textbox_panel)
+		self.button_panel = button_panel(self.root, self.button_panel, 
+			self.textbox_panel.get_before_textbox(), self.textbox_panel.get_after_textbox())
 
-		self.init_window()
 
-	def init_main_window(self, Frame):
-		menu = Menu(self.master)
+		#old implementation of main window where everything is essentially run
+		#in main()
+
+		#self.init_window()
+
+	def init_main_window(self):
+		menu = Menu(self.root)
 		file = Menu(menu)
 		edit = Menu(menu)
 		file.add_command(label="Exit", command=client_exit)

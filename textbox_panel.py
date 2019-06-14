@@ -1,5 +1,8 @@
 from tkinter import *
 
+beforeTextBox = Text()
+afterTextBox = Text()
+
 class textbox_panel:
 
 	def __init__(self, root, frame):
@@ -7,16 +10,16 @@ class textbox_panel:
 		self.root = root
 		self.frame = frame
 
-		beforeTextBox = None
-		afterTextBox = None
+		#self.beforeTextBox = None
+		#self.afterTextBox = None
 
 		self.init_textboxes()
 
 	def get_before_textbox(self):
-		return self.beforeTextBox.get("1.0", 'end-1c')
+		return beforeTextBox
 
 	def get_after_textbox(self):
-		return self.afterTextBox.get("1.0", 'end-1c')
+		return afterTextBox
 
 	def init_textboxes(self):
 
