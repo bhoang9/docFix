@@ -10,16 +10,18 @@ class button_panel:
 		test_button = None
 		insertBottomButton = None
 		specialCharButton = None
+		options = None
 		self.beforeTextBox = before_text_box
 		self.afterTextBox = after_text_box
 
 		self.create_buttons()
 		self.define_buttons()
+		self.init_options_menu()
 		self.place_buttons()
 
 	def create_buttons(self):
 
-		self.test_button = Button(self.frame, text="test Button")
+		self.test_button = Button(self.root, text="test Button")
 		self.insertBottomButton = Button(self.root, text="insertBottomButton")
 		self.specialCharButton = Button(self.root, text="specialCharButton")
 
@@ -36,4 +38,17 @@ class button_panel:
 		self.test_button.place(x=10, y=10)
 		self.insertBottomButton.place(x=10, y=40)
 		self.specialCharButton.place(x=10,y=70)
+		self.options.place(x=10,y=100)
+
+	def init_options_menu(self):
+		string_var = StringVar(self.frame)
+		string_var.set("Add HTML tags")
+
+		option_choices = ["Bold", "Italic", "Underline", "Bold Underline", "Bold Italic",
+					"All"]
+
+		options = OptionMenu(self.root, string_var, *option_choices,
+			command = lambda x: add_html_tag(self.afterTextBox, self.beforeTextBox.get("1.0", 'end-1c'), string_var.get()))
+
+		self.options = options
 

@@ -23,7 +23,7 @@ class Window(Frame):
 
 		self.init_main_window()
 
-		self.button_panel = Frame(self.root, width=200, height = 550)
+		self.button_panel = Frame(self.root, width=200, height = 575)
 		self.button_panel.grid(row=0, column=0, padx=5, pady=5)
 
 		self.textbox_panel = Frame(self.root, width=600, height = 600)
@@ -94,9 +94,6 @@ class Window(Frame):
 		#self.master.title("Doc Fixer")
 		self.pack(fill=BOTH, expand=1)
 		self.master.config(menu=menu)
-
-		#beforeTextBox.pack(side = TOP, fill = BOTH, expand = True)
-		#afterTextBox.pack(side = BOTTOM, fill = BOTH, expand = True)
 
 		file.add_command(label="Exit", command=client_exit)
 		menu.add_cascade(label="File", menu=file)
