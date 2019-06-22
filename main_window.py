@@ -87,6 +87,9 @@ class Window(Frame):
 		exitButton = Button(self, text="Exit",
 			command = lambda: client_exit())
 
+		specialButton = Button(self, text="Special button",
+			command = lambda: create_list(afterTextBox,beforeTextBox.get("1.0", 'end-1c')))
+
 		#getting option menu
 		options = self.init_options_menu(afterTextBox, beforeTextBox)
 

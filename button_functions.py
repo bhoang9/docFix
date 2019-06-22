@@ -112,6 +112,21 @@ def add_html_tag(tBox, nString, html_tag):
 	clear_tBox(tBox)
 	tBox.insert(END, tagged_string)
 
+def fix_special(tBox, nString):
+	writeStr = ""
+	newline = False
+
+	for c in nString:
+
+		if(ord(c) == 10):
+			writeStr += " "
+
+		else:
+			writeStr += c
+
+	clear_tBox(tBox)
+	tBox.insert(END, writeStr)
+
 #for testing purposes
 def print_string(tBox, nString):
 
