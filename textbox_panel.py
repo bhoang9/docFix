@@ -1,3 +1,5 @@
+#Contains the Frame that holds the textboxes
+
 from tkinter import *
 
 class textbox_panel:
