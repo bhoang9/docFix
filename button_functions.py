@@ -34,13 +34,18 @@ def fix_bullets(tBox, nString):
 	tBox.insert(END, writeStr)
 
 #Create an HTML list w/ lines separated by "\n"
-def create_list(tBox, nString):
+def create_list(tBox, nString, newline):
 
 	writeStr = "<ul>"
 	newList = nString.splitlines()
 
+	if(newline == True):
+		closingTag = "\n</li>"
+	else:
+		closingTag = "</li>"
+
 	for item in newList:
-		nItem = "<li>" + item + "</li>"
+		nItem = "<li>" + item + closingTag
 		writeStr += nItem
 
 	writeStr += "</ul>"
