@@ -34,6 +34,7 @@ class button_panel:
 		self.getAsciiButton = Button(self.root, text="Get ASCII")
 		self.createNewlistButton = Button(self.root, text="Create new list")
 		self.createNewList2 = Button(self.root, text="Create new list 2")
+		self.fixBulletsButton2 = Button(self.root, text="Fix Bullets 2")
 
 	def define_buttons(self):
 
@@ -49,7 +50,7 @@ class button_panel:
 			lambda: fix_special(self.afterTextBox, self.beforeTextBox.get("1.0",END)))
 
 		self.fixBulletsButton.configure(command =
-			lambda: fix_bullets(self.afterTextBox, self.beforeTextBox.get("1.0",END)))
+			lambda: fix_bullets(self.afterTextBox, self.beforeTextBox.get("1.0",END), newline=False))
 
 		self.fixNewlineButton.configure(command =
 			lambda: fix_newline(self.afterTextBox, self.beforeTextBox.get("1.0",END)))
@@ -64,7 +65,10 @@ class button_panel:
 			lambda: create_list(self.afterTextBox, self.beforeTextBox.get("1.0",END), newline=False))	
 
 		self.createNewList2.configure(command =
-			lambda: create_list(self.afterTextBox, self.beforeTextBox.get("1.0",END), newline=True))		
+			lambda: create_list(self.afterTextBox, self.beforeTextBox.get("1.0",END), newline=True))
+
+		self.fixBulletsButton2.configure(command =
+			lambda: fix_bullets(self.afterTextBox, self.beforeTextBox.get("1.0",END), newline=True))		
 
 	def place_buttons(self):
 		self.insertBottomButton.place(x=10, y=10)
@@ -75,8 +79,9 @@ class button_panel:
 		self.clearTopButton.place(x=10,y=160)
 		self.createNewlistButton.place(x=10,y=190)
 		self.createNewList2.place(x=10,y=220)
-		self.fixDebugButton.place(x=10, y=250)
-		self.exit_button.place(x=10, y=300)
+		self.fixBulletsButton2.place(x=10,y=250)
+		self.fixDebugButton.place(x=10, y=280)
+		self.exit_button.place(x=10, y=310)
 
 	def init_options_menu(self):
 		string_var = StringVar(self.frame)

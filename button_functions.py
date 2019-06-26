@@ -17,15 +17,20 @@ def clear_tBox(tBox):
 	tBox.delete('1.0', END)
 
 #Format bulletpoints correctly
-def fix_bullets(tBox, nString):
+def fix_bullets(tBox, nString, newline):
 	writeStr = "<ul>"
+
+	if(newline == True):
+		closingTag = "\n</li>"
+	else:
+		closingTag = "</li>"
 
 	for c in nString:
 		if (ord(c) == 8226) or (ord(c) == 9679):
 			writeStr += "<li>"
 
 		elif(ord(c) == 10):
-			writeStr += "</li>"
+			writeStr += closingTag
 
 		else:
 			writeStr += c
